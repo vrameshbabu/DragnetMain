@@ -1,24 +1,53 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import HeaderComponet from "./Components/HeaderComponent/Header";
+import Footer from "./Components/Footer/Footer";
+import Sidebar from "./Components/SideNavigationBar/Sidebar";
+import AddOrganization from "./Components/Organization/AddOrganization";
+import AddPerson from "./Components/Person/AddPerson";
+import ContentMain from "./Components/MainContent/ContentMain";
+import Search from "./Components/Search/Search";
+import ViewOrganization from "./Components/Organization/ViewOrganization";
+import ViewPerson from "./Components/Person/ViewPerson";
+import EditOrganization from "./Components/Organization/EditOrganization";
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
+        <HeaderComponet />
+        {/* <div className="ui-theme-settings">
+          <button
+            type="button"
+            id="TooltipDemo"
+            className="btn-open-options btn btn-warning"
+          >
+            <i className="fa fa-cog fa-w-16 fa-spin fa-2x" />
+          </button>
+        </div> */}
+
+        <div className="app-main">
+          <Sidebar />
+          <div className="app-main__outer">
+            {/* <ContentMain/> */}
+          <Switch>
+            <Route path="/" exact component={ContentMain} /> 
+            <Route path="/Search" component={Search} />
+            <Route path="/AddOrganization" component={AddOrganization} />
+            <Route path="/ViewOrganization" component={ViewOrganization} />
+            <Route path="/EditOrganization" component={EditOrganization} />
+            <Route path="/AddPerson" component={AddPerson} />
+            <Route path="/ViewPerson" component={ViewPerson} />
+          </Switch>
+
+          </div>
+        </div>
+      </div>
+
+      <Footer />
+    </Router>
   );
 }
 
